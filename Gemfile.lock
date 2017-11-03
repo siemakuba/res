@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ruby_event_store (0.18.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ruby_event_store
+
+BUNDLED WITH
+   1.15.4
