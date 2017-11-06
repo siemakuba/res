@@ -28,7 +28,7 @@ event_store = RubyEventStore::Client.new(repository: RubyEventStore::InMemoryRep
 
 event_store.subscribe(FooEventHandler.new, [FooEvent])
 event_store.subscribe(BarEventHandler.new, [BarEvent])
-event_store.subscribe(GeneralEventHandler.new, [FooEvent, BarEvent, OtherEvent])
+event_store.subscribe_to_all_events(GeneralEventHandler.new)
 
 
 puts
