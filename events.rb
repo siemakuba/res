@@ -1,6 +1,15 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'ruby_event_store'
+require 'aws-sdk'
+require 'pry'
+
+require_relative './dynamodb_repository'
+
+Aws.config.update({
+  region: "us-west-2",
+  endpoint: "http://localhost:8000"
+})
 
 FooEvent = Class.new(RubyEventStore::Event)
 BarEvent = Class.new(RubyEventStore::Event)
@@ -24,7 +33,7 @@ class GeneralEventHandler
   end
 end
 
-event_store = RubyEventStore::Client.new(repository: RubyEventStore::InMemoryRepository.new)
+event_store = RubyEventStore::Client.new(repository: DynamodbRepository.new)
 
 event_store.subscribe(FooEventHandler.new, [FooEvent])
 event_store.subscribe(BarEventHandler.new, [BarEvent])
