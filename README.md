@@ -46,7 +46,7 @@ bundle install
 Execute the code in `dynamodb_create_table.rb`:
 
 ```bash
-$ ruby dynabmodb_create_table.rb
+$ ruby dynamodb_create_table.rb
 ```
 
 You should see the following output:
