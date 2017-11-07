@@ -14,5 +14,6 @@ data = dynamodb.scan({table_name: 'Events'})
 puts "All items in table: #{data.count}"
 
 data.items.each do |row|
+  puts row
   puts "#{row['id']} / #{row['info']['event_type']} / #{row['info']['metadata']}"
 end

@@ -2,7 +2,6 @@ require 'rubygems'
 require 'bundler/setup'
 require 'ruby_event_store'
 require 'aws-sdk'
-require 'pry'
 
 require_relative './dynamodb_repository'
 

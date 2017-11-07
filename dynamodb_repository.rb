@@ -1,3 +1,4 @@
+require 'time'
 
 class DynamodbRepository
   def initialize(dynamodb_client: Aws::DynamoDB::Client.new)
@@ -18,6 +19,7 @@ class DynamodbRepository
   def event_data(event, stream_name)
     {
       id: SecureRandom.uuid,
+      timestamp: Time.now.iso8601(6),
       info: {
         stream_name: stream_name.to_s,
         event_type: event.class.to_s,
@@ -33,6 +35,8 @@ class DynamodbRepository
         value = case value
           when Hash, Array, Set, String, Numeric, TrueClass, FalseClass, nil
             value
+          when Date, Time, DateTime
+            value.to_time.iso8601
           else
             value.to_s
           end

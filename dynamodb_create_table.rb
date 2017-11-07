@@ -15,11 +15,19 @@ params = {
     {
       attribute_name: "id",
       key_type: "HASH"
+    },
+    {
+      attribute_name: "timestamp",
+      key_type: "RANGE"
     }
   ],
   attribute_definitions: [
     {
       attribute_name: "id",
+      attribute_type: "S"
+    },
+    {
+      attribute_name: "timestamp",
       attribute_type: "S"
     }
   ],
@@ -30,7 +38,8 @@ params = {
 }
 
 begin
-  dynamodb.delete_table({table_name: 'Events'})
+  # uncomment to reset the DB if you change HASH or SORT keys
+  # dynamodb.delete_table({table_name: 'Events'})
 
   result = dynamodb.create_table(params)
   puts "Created table. Status: #{result.table_description.table_status}"
